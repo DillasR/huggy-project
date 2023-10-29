@@ -1,5 +1,5 @@
 <template>
-    <button>
+    <button @click="handleClick">
         {{ text }}
     </button>
 </template>
@@ -12,6 +12,11 @@ export default {
             type: String,
             default: 'Enviar'
         }
+    },
+    methods: {
+        handleClick() {
+            this.$emit('button-click');
+        },
     },
 }
 </script>

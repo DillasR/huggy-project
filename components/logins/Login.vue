@@ -4,9 +4,19 @@
             <div class="tittle">
                 <h2>Login</h2>
             </div>
-            <input type="email" class="email-box" placeholder="E-mail ou usuário">
 
-            <ButtonPrimary style="width: 330px; border-radius: 20px; font-weight: 400;" text="Continuar" />
+            <div v-if="email">
+                <input type="email" class="email-box" placeholder="E-mail ou Usuário">
+
+                <ButtonPrimary :style="buttonStyle" text="Continuar" @button-click="sendEmail" />
+
+            </div>
+
+            <div v-else password>
+                <input type="password" class="email-box" placeholder="Senha">
+                <ButtonPrimary text="Entrar" :style="buttonStyle" />
+            </div>
+
 
             <div class="divisor">
                 <span class="line"></span>
@@ -53,12 +63,32 @@ export default {
     data() {
 
         return {
+            email: true,
+            password: '',
             languageList: ['Portugues (Brasil)', 'Inglês (EUA)', 'Espanhol'],
             google,
             facebook,
             apple,
         }
-    }
+    },
+    computed: {
+
+        buttonStyle() {
+            return {
+                width: '330px',
+                borderRadius: '20px',
+                fontWeight: 400,
+            };
+        },
+
+    },
+    methods: {
+        sendEmail() {
+            this.email = !this.email
+            console.log('click');
+        }
+    },
+
 }
 </script>
 
